@@ -17,6 +17,9 @@ def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
 
+    if user_language is None:
+        user_language = "en"
+
     options = Options()
     options.add_experimental_option(
         'prefs', {'intl.accept_languages': user_language})
@@ -26,9 +29,6 @@ def browser(request):
 
     if browser_name is None:
         browser_name = "chrome"
-
-    if user_language is None:
-        user_language = "en"
 
     browser = None
     if browser_name == "chrome":
