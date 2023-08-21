@@ -40,3 +40,11 @@ class ProductPage(BasePage):
 
         assert product_price == basket_price_from_alert, \
             f"Wrong basket price after adding product. Expected {product_price}. Actual {basket_price_from_alert}"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_of_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should be disappeared"
